@@ -18,7 +18,6 @@ g(1.2*10^(-8))
 % no tienes la resta de numeros muy pequeños, no tienes
 % tanta diferencia en la division.
 % Operar con numeros.
-% usb.numerico@gmail.com
 
 % Ejercicio 3:
 n=3
