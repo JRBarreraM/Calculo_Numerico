@@ -25,20 +25,20 @@ fprintf("\n")
 % Ejercicio 2:
 n=51
 function cos = cos_Taylor(x)
-Sum = 1;
-for i:1:n
-  Sum = Sum + ((-1)^i)*((x^(2*i))/(factorial(2*i)))
+  cos = 0;
+  for i=1:1:n
+    cos = cos + ((-1)^i)*((x^(2*i))/(factorial(2*i)))
+  end
 end
-cos = Sum
 %2.a
-function cos = rcos(x)
-if n == 1
-  cos = 1 + ((x^2)/2)
-else cos = (((((-1)^n)*(x)^2)/((2*n)*((2*n)-1))) + (-1)^(n-1)) + rcos(n-1,x)
-
-intervalo = (8*pi):0.01:(14*pi)
-n=51
-
+function cos = rcos(x,n,contador)
+  if contador == n+1
+    cos = (-1)^n;
+  else 
+    cos = (((rcos(x,n,contador+1)*(x^2))/((2*contador)*(2*contador - 1))) + (-1)^(contador-1);
+  end     
+end
+intervalo = (8*pi):0.01:(14*pi);
 plot(intervalo,cos_Taylor,'-r')
 grid on
 hold on
