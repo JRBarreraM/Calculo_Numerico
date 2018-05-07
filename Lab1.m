@@ -6,16 +6,23 @@ clc
 % Ejercicio 1:
 intervalo = [-3,3];
 f = @(x) (1-cos(x))./((x).^2);
+
 % 1.a
 ezplot(f,intervalo)
+grid on
+hold on
+hold off
+
 % 1.b
 fprintf("Evaluacion en 1.2*10^(-8)")
 f(1.2*10^(-8))
+
 % 1.c
 g = @(x) (0.5).*(((sin(x./2))./(x./2)).^2);
 fprintf("Evaluacion en 1.2*10^(-8)")
 g(1.2*10^(-8))
 fprintf("\n")
+
 % Resta de numeros muy parecidos numerador, division
 % entre numeros muy pequeños. Mientras que en la segunda
 % no tienes la resta de numeros muy pequeños, no tienes
@@ -23,32 +30,21 @@ fprintf("\n")
 % Operar con numeros.
 
 % Ejercicio 2:
-n=51
-function cos = cos_Taylor(x)
-  cos = 0;
-  for i=1:1:n
-    cos = cos + ((-1)^i)*((x^(2*i))/(factorial(2*i)))
-  end
-end
-%2.a
-function cos = rcos(x,n,contador)
-  if contador == n+1
-    cos = (-1)^n;
-  else 
-    cos = (((rcos(x,n,contador+1)*(x^2))/((2*contador)*(2*contador - 1))) + (-1)^(contador-1);
-  end     
-end
+
 intervalo = (8*pi):0.01:(14*pi);
-plot(intervalo,cos_Taylor,'-r')
+resultados_cos_Taylor=cos_Taylor(intervalo);
+resultados_rcos=rcos(intervalo,51,1);
+plot(intervalo,resultados_cos_Taylor,'-r')
 grid on
 hold on
-plot(intervalo,rcos,'-b')
+plot(intervalo,resultados_rcos,'-b')
 
 % Ejercicio 3:
 x = [1000000000, 1000000001, 1000000002];
 n = length(x);
 Sum = 0;
 Sumsum = 0;
+
 % 1.a
 for entry = x,
   Sum = Sum + entry;
