@@ -1,3 +1,4 @@
+%Estudiante Jose Barrera 15-10123 Seccion B
 function cos = rcos(x,n,contador)
   if contador == n+1
     cos = (-1).^n;

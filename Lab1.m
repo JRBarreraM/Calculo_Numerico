@@ -1,3 +1,4 @@
+%Estudiante Jose Barrera 15-10123 Seccion B
 % Laboratorio #1
 close all
 
