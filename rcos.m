@@ -4,4 +4,4 @@ function cos = rcos(x,n,contador)
   else
     cos = (((rcos(x,n,contador+1).*((x).^2))./((2*contador)*((2*contador) - 1))) + (-1)^(contador-1));
   end
-endfunction
+end
