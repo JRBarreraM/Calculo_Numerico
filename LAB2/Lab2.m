@@ -35,29 +35,30 @@ else
     x = sprintf('El sistema A2 no tiene solución única');
     disp(x);
 end
-u = sprintf('---Ejercicio c---');
-disp(u);
-u2 = sprintf('.Sin pivoteo');
-disp(u2);
-[G h] = gauss(A1,b1,0);
-[I j] = gauss(A2,b2,0);
-x1 = sustitucion(G,h);
-x2 = sustitucion(I,j);
-u3 = sprintf('Solucion A1');
-disp(u3);
-disp(x1);
-u4 = sprintf('Solucion A2');
-disp(u4);
-disp(x2);
-u5 = sprintf('.Con pivoteo');
-disp(u5);
-[G h] = gauss(A1,b1,1);
-[I j] = gauss(A2,b2,1);
-x3 = sustitucion(G,h);
-x4 = sustitucion(I,j);
-u6 = sprintf('Solucion A1');
-disp(u6);
-disp(x3);
-u7 = sprintf('Solucion A2');
-disp(u7);
-disp(x4);
+disp('---Ejercicio c---');
+disp('.Sin pivoteo');
+disp('Solucion 1');
+disp(gauss(A1,b1,0));
+disp('Solucion 2');
+disp(gauss(A2,b2,0));
+disp('.Con pivoteo');
+disp('Solucion 1');
+disp(gauss(A1,b1,1));
+disp('Solucion 2');
+disp(gauss(A2,b2,1));
+disp('Norma Inf. A1');
+norm(A1,inf)
+disp('Norma Inf. b1');
+norm(b1,inf)
+disp('Norma Inf. A2');
+norm(A2,inf)
+disp('Norma Inf. b2');
+norm(b2,inf)
+disp('Determinante de A1');
+disp(det(A1));
+disp('Determinante de A2');
+disp(det(A2));
+disp('Autovalor Maximo de A1');
+disp(AutoMax(A1));
+disp('Autovalor Maximo de A2');
+disp(AutoMax(A2));
