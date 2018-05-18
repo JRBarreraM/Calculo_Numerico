@@ -37,17 +37,39 @@ else
     x = sprintf('El sistema A2 no tiene solución única');
     disp(x);
 end
+
 disp('---Ejercicio c---');
+
 disp('.Sin pivoteo');
+
 disp('Solucion 1');
-disp(gauss(A1,b1,0));
+obtenido=gauss(A1,b1,0);
+disp(obtenido);
+disp('Error relativo Solucion 1');
+disp(errorelativo([1;-1;1],obtenido));
+
 disp('Solucion 2');
-disp(gauss(A2,b2,0));
+obtenido=gauss(A2,b2,0);
+disp(obtenido);
+disp('Error relativo Solucion 2');
+disp(errorelativo([1;-1;1],obtenido));
+
 disp('.Con pivoteo');
+
 disp('Solucion 1');
-disp(gauss(A1,b1,1));
+obtenido=gauss(A1,b1,1);
+disp(obtenido);
+disp('Error relativo Solucion 1');
+disp(errorelativo([1;-1;1],obtenido));
+
 disp('Solucion 2');
-disp(gauss(A2,b2,1));
+obtenido=gauss(A2,b2,1);
+disp(obtenido);
+disp('Error relativo Solucion 2');
+disp(errorelativo([1;-1;1],obtenido));
+
+
+
 disp('---Ejercicio d---');
 disp('Determinante de A1');
 disp(det(A1));
@@ -85,9 +107,11 @@ intervalo=zeros(3,1);
 for k=1:3
   intervalo(k)=k+1;
 end
+
 for p=2:4
   resultados(p-1) = cond(hilb(p));
 end
+
 hold on
 grid on
 plot(intervalo,resultados,'-r');
