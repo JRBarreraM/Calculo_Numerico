@@ -16,17 +16,17 @@ function solucion = Lab2abc(n)
 
   b=H*u;
   disp('Vectores Solucion \');
-  xmatlab=H\b;
-  disp(xmatlab);
+  xmatlab=H\b
   disp('Vectores Solucion Mi Gauss');
   xgauss=gaussiana(H,b);
-  disp(xgauss);
+  disp(xgauss)
 
   disp('Norma Infinita del Vector Residual');
   r = b - (H*xgauss);
   norminfi = norm(r,inf);
   disp(norminfi);
-  disp('Norma Infinita del Error');  
-  error = xgauss-xmatlab;
-  norminfi = norm(error,inf);  
+  disp('Error Relativo con Norma Infinita del Error');  
+  error = xgauss-u;
+  norminfi = norm(error,inf)/norm(u,inf);  
+  norminfi = norminfi*100;
   disp(norminfi);

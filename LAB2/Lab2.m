@@ -94,7 +94,7 @@ disp('Se Verifica la Relacion para A2 con pivote?');
 disp(verificarrelacion(A2,b2,1));
 
 disp('---Parte 2---');
-for n=2:10
+for n=2:13
   fprintf('Para');
   disp(n);
   Lab2abc(n);
@@ -104,16 +104,16 @@ figure;
 resultados=zeros(3,1);
 intervalo=zeros(3,1);
 
-for k=1:3
+for k=1:12
   intervalo(k)=k+1;
 end
 
-for p=2:4
+for p=2:13
   resultados(p-1) = cond(hilb(p));
 end
 
-hold on
-grid on
+hold on;
+grid on;
 plot(intervalo,resultados,'-r');
 title('Numero de Condicion vs Tamaño');
 xlabel('Tamaño De La Matriz De Hilbert');
