@@ -1,6 +1,15 @@
 function x = LU(A,b)
   [n m]=size(A);
 
+  for k=2:n
+    for i=k:n
+      A(i,k-1)=A(i,k-1)/A(k-1,k-1);
+      for j=k:n
+        A(i,j)=A(i,j)-(A(i,k-1)*A(k-1,j));
+      end
+    end
+  end
+ 
   U=triu(A);
   L=tril(A,-1)+eye(n);
 
@@ -9,31 +18,7 @@ function x = LU(A,b)
   % Ux = y
 
 % sustitucion hacia adelante
-  
-  x=zeros(n,1);
-
-  x(1)=b(1)/A(1,1);
-
-  for i=2:n
-    suma=0;
-    for j=1:i-1
-      suma=suma+A(i,j)*x(j);
-    end
-    x(i)=(b(i)-suma)/A(i,i);
-  end
-  
+  y=susthaciadelante(L,b);
 % sustitucion hacia atras
-
-  x=zeros(n,1);
-
-  x(n)=b(n)/A(n,n);
-
-  for i=n-1:-1:1
-    suma=0;
-    for j=i+1:n
-      suma=suma+A(i,j)*x(j);
-    end
-    x(i)=(b(i)-suma)/A(i,i);
-  end
-
+  x = susthaciatras(U,y);
 % Obtenemos el vector solucion

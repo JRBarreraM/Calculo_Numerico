@@ -1,11 +1,11 @@
 function x = CLYU(A,b)
   [n m]=size(A);
   
-  for k=2:n
-    for i=k:n
-      A(i,k-1)=A(i,k-1)/A(k-1,k-1);
+  for k=1:n-1
+    for i=k+1:n
+      A(i,k)=A(i,k)/A(k,k);
       for j=k:n
-        A(i,j)=A(i,j)-A(i,k-1)*A(k-1,j);
+        A(i,j)=A(i,j)-(A(i,k)*A(k,j));
       end
     end
   end
