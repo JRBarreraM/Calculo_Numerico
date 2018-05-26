@@ -1,143 +1,143 @@
 disp('---Parte 2---');
+
 disp('---Ejercicio a---');
-v=generarv(n)
 
-v = [-3; -2; -1; 0.01; 1; 2; 3]
-T = zeros();
-
-disp('---Parte 1---');
-
-% b) Por teorema Rouche-Frobenius, si rango de A es igual al rango de la matriz
-% ampliada de A con b, y esto igual al número de incógnitas, entonces 
-% tenemos que el SEL tiene una única solución.
-y = sprintf('---Ejercicio b---');
-disp(y);
-C1 = [A1 b1];
-if rank(A1) == rank(C1)
-    if rank(A1) == length(A1)
-        x = sprintf('El sistema A1 tiene solución única');
-        disp(x);
-    else
-        x = sprintf('El sistema A1 no tiene solución única');
-        disp(x);
-    end
-else
-    x = sprinf('El sistema A1 no tiene solución única');
-    disp(x);
-end
-
-C2 = [A2,b2];
-if rank(A2) == rank(C2)
-    if rank(A2) == length(A2)
-        x = sprintf('El sistema A2 tiene solución única');
-        disp(x);
-    else
-        x = sprintf('El sistema A2 no tiene solución única');
-        disp(x);
-    end
-else
-    x = sprintf('El sistema A2 no tiene solución única');
-    disp(x);
-end
-
-disp('---Ejercicio c---');
-
-disp('.Sin pivoteo');
-
-disp('Solucion 1');
-obtenido=gauss(A1,b1,0);
-disp(obtenido);
-disp('Error relativo Solucion 1');
-disp(errorelativo([1;-1;1],obtenido));
-
-disp('Solucion 2');
-obtenido=gauss(A2,b2,0);
-disp(obtenido);
-disp('Error relativo Solucion 2');
-disp(errorelativo([1;-1;1],obtenido));
-
-disp('.Con pivoteo');
-
-disp('Solucion 1');
-obtenido=gauss(A1,b1,1);
-disp(obtenido);
-disp('Error relativo Solucion 1');
-disp(errorelativo([1;-1;1],obtenido));
-
-disp('Solucion 2');
-obtenido=gauss(A2,b2,1);
-disp(obtenido);
-disp('Error relativo Solucion 2');
-disp(errorelativo([1;-1;1],obtenido));
-
-% Es sencillo ver que la aplicacion del pivoteo no hace mayor diferencia sobre
-% sobre la matriz A2 pues esta es diagonal dominante. Mientras que en A1 el
-% el primer pivote es un numero muy pequeno y dividir entre el causa errores.
-% De alli la importancia del pivoteo con la aritmetica inexacta, si se usa
-% aritmetica exacta realmente no hay diferencia.
-
-disp('---Ejercicio d---');
+disp('---n=5---');
+v=generarv(5);
+T=generarT(v);
+unos=ones(length(T),1);
+b=T*unos;
 disp('Determinante de A1');
-disp(det(A1));
-disp('Determinante de A2');
-disp(det(A2));
-disp('Número de Condición de A1');
-disp(cond(A1));
-disp('Número de Condición de A2');
-disp(cond(A2));
-disp('Autovalor Maximo y Minimo de A1');
-disp(max_min_autovalores(A1));
-disp('Autovalor Maximo y Minimo de A2');
-disp(max_min_autovalores(A2));
-disp('---Ejercicio e---');
-disp('Se Verifica la Relacion para A1 sin pivote?');
-disp(verificarrelacion(A1,b1,0));
-disp('Se Verifica la Relacion para A1 con pivote?');
-disp(verificarrelacion(A1,b1,1));
-disp('Se Verifica la Relacion para A2 sin pivote?');
-disp(verificarrelacion(A2,b2,0));
-disp('Se Verifica la Relacion para A2 con pivote?');
-disp(verificarrelacion(A2,b2,1));
-% El determinante de si es cercano a 0, la matriz se hace casi singular para la
-% aritmetica del computador lo cual dificulta el calculo de la inversa y la
-% resolucion de SEL. El numero de condicion entre mas se aleja de 1 influye
-% mas gravemente en la cota del error de salida dado en error en la entrada.
-% Los autovalores de la matriz nos dan informacion relacionada a la singularidad,
-% de la matriz, entre mas cercanos a 0, mas se comprometen los calculos, algo
-% similar a lo ya explicado con el determinante.
-% Pudimos ver que la relacion teorica siempre se verifica.
+disp(det(T));
+disp('Número de Condición');
+disp(cond(T,inf));
+disp('Autovalores');
+disp(eig(T));
+disp('---Eliminaacion Gaussiana Sin Pivoteo---');
+obtenido=gaussiana(T,b);
+disp(obtenido);
+disp('Error relativo');
+disp(errorelativo(unos,obtenido));
 
-disp('---Parte 2---');
-for n=2:13
-  fprintf('Para');
-  disp(n);
-  Lab2abc(n);
-end
+disp('---Eliminaacion Gaussiana Con Pivoteo Parcial---');
+obtenido=gaussipivot(T,b);
+disp(obtenido);
+disp('Error relativo');
+disp(errorelativo(unos,obtenido));
 
-figure;
-resultados=zeros(3,1);
-intervalo=zeros(3,1);
+disp('---Factorizacion LU---');
+obtenido=LU(T,b);
+disp(obtenido);
+disp('Error relativo');
+disp(errorelativo(unos,obtenido));
 
-for k=1:12
-  intervalo(k)=k+1;
-end
+disp('---n=25---');
+v=generarv(25);
+T=generarT(v);
+unos=ones(length(T),1);
+b=T*unos;
+disp('Determinante de A1');
+disp(det(T));
+disp('Número de Condición');
+disp(cond(T,inf));
+disp('Autovalores');
+disp(eig(T));
+disp('---Eliminaacion Gaussiana Sin Pivoteo---');
+disp(gaussiana(T,b));
+disp('---Eliminaacion Gaussiana Con Pivoteo Parcial---');
+disp(gaussipivot(T,b));
+disp('---Factorizacion LU---');
+disp(LU(T,b));
 
-for p=2:13
-  resultados(p-1) = cond(hilb(p));
-end
+disp('---Ejercicio b---');
+v = [-3; -2; -1; 0.01; 1; 2; 3];
+T=generarT(v);
+unos=ones(length(T),1);
+b=T*unos;
+disp('Determinante de A1');
+disp(det(T));
+disp('Número de Condición');
+disp(cond(T,inf));
+disp('Autovalores');
+disp(eig(T));
+disp('---Eliminaacion Gaussiana Sin Pivoteo---');
+obtenido=gaussiana(T,b);
+disp(obtenido);
+disp('Error relativo');
+disp(errorelativo(unos,obtenido));
 
-hold on;
-grid on;
-plot(intervalo,resultados,'-r');
-title('Numero de Condicion vs Tamaño');
-xlabel('Tamaño De La Matriz De Hilbert');
-ylabel('Numero De Condicion De La Matriz');
+disp('---Eliminaacion Gaussiana Con Pivoteo Parcial---');
+obtenido=gaussipivot(T,b);
+disp(obtenido);
+disp('Error relativo');
+disp(errorelativo(unos,obtenido));
 
-% Con un n de 13 se puede apreciar un error relativo superior al 100%
-% y con 12 inferior.
-% Como conclusion se puede observar que la matriz para n = 13, poseia un
-% numero de condicion tan grande que aun sin error en la entrada, el algoritmo
-% estudiado poseia un error de mas del 100%. Tambien se observa que el crecimie-
-% pronunciado de la grafica, muy superior al lineal en principio, se dispara
-% para n=13. Por ultimo, vale la pena destacar la sorprende exactitud del algo-
-% ritmo A\b.
+disp('---Factorizacion LU---');
+obtenido=LU(T,b);
+disp(obtenido);
+disp('Error relativo');
+disp(errorelativo(unos,obtenido));
+
+disp('---Parte 3---');
+disp('---T = vander([0.5 0.6 0.7 0.8 0.9]);---');
+T = vander([0.5 0.6 0.7 0.8 0.9]);
+unos=ones(length(T),1);
+b=T*unos;
+disp('Determinante de A1');
+disp(det(T));
+disp('Número de Condición');
+disp(cond(T,inf));
+disp('Autovalores');
+disp(eig(T));
+disp('---Eliminaacion Gaussiana Sin Pivoteo---');
+obtenido=gaussiana(T,b);
+disp(obtenido);
+disp('Error relativo');
+disp(errorelativo(unos,obtenido));
+
+disp('---Eliminaacion Gaussiana Con Pivoteo Parcial---');
+obtenido=gaussipivot(T,b);
+disp(obtenido);
+disp('Error relativo');
+disp(errorelativo(unos,obtenido));
+
+disp('---Factorizacion LU---');
+obtenido=LU(T,b);
+disp(obtenido);
+disp('Error relativo');
+disp(errorelativo(unos,obtenido));
+
+
+disp('---T = vander([0.5 0.6 7 8 9 10 13]);---');
+T = vander([0.5 0.6 7 8 9 10 13]);
+unos=ones(length(T),1);
+b=T*unos;
+disp('Determinante de A1');
+disp(det(T));
+disp('Número de Condición');
+disp(cond(T,inf));
+disp('Autovalores');
+disp(eig(T));
+
+disp('---Eliminaacion Gaussiana Sin Pivoteo---');
+obtenido=gaussiana(T,b);
+disp(obtenido);
+disp('Error relativo');
+disp(errorelativo(unos,obtenido));
+
+disp('---Eliminaacion Gaussiana Con Pivoteo Parcial---');
+obtenido=gaussipivot(T,b);
+disp(obtenido);
+disp('Error relativo');
+disp(errorelativo(unos,obtenido));
+
+disp('---Factorizacion LU---');
+obtenido=LU(T,b);
+disp(obtenido);
+disp('Error relativo');
+disp(errorelativo(unos,obtenido));
+
+disp('---Parte 4---');
+
+disp('Número de Condición');
+%disp(cond(A*inversa-eye(len(A)),inf));
