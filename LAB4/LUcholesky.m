@@ -1,4 +1,4 @@
-function L = LUcholesky(A)
+function x = LUcholesky(A,b)
   [n m]=size(A);
   L=zeros(n);
   for k=1:n
@@ -15,3 +15,11 @@ function L = LUcholesky(A)
       L(i,k)=(A(i,k)-suma)/L(k,k);
     end
   end
+  
+  L
+  
+% sustitucion hacia adelante
+  y=susthaciadelante(L,b);
+% sustitucion hacia atras
+  x = susthaciatras(L',y);
+% Obtenemos el vector solucion

@@ -1,4 +1,4 @@
-function x = LU(A,b)
+function x = FactorizacionLU(A,b)
   [n m]=size(A);
 
   for k=2:n
@@ -13,7 +13,6 @@ function x = LU(A,b)
   L=tril(A,-1)+eye(n)
  
   U=triu(A)
-
   % LUx = b
   % Ly = b
   % Ux = y
