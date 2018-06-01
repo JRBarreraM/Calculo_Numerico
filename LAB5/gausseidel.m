@@ -19,3 +19,7 @@ function [xnueva,k] = gausseidel(A,b,xvieja,maxiter,tol)
     end
     xvieja=xnueva;
   end
+% (D-E)x^(k+1) = F*x^(k) + b
+% (D-F)x^(k+1) = E*x^(k) + b
+% x^(k+1) = (D-F)^(-1)*F*x^(k) + (D-F)^(-1)
+% b(i)=B(:i)
