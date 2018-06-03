@@ -1,4 +1,4 @@
-function [xnueva,k] = jacovi(A,b,xvieja,maxiter,tol)
+function xnueva = jacovi(A,b,xvieja,maxiter,tol)
   % A = D-E-F donde D (diagonal), E (tri inferior), F (tri superior)
   % x = D^(-1)*(E+F)*x + D^(-1)*b
   % converge si: 1<norm(D^(-1)*(E+F),inf)
@@ -12,20 +12,24 @@ function [xnueva,k] = jacovi(A,b,xvieja,maxiter,tol)
   
   [n,m]=size(A);
   xnueva=NaN+ones(n,1);
+  iteraciones=0;
   for k=1:maxiter
     for i=1:n
       suma1=0;
       for j=1:i-1
         suma1=suma1+A(i,j)*xvieja(j);
+        iteraciones=iteraciones+1;
       end
       suma2=0;
       for j=i+1:n
         suma2=suma2+A(i,j)*xvieja(j);
+        iteraciones=iteraciones+1;
       end
       xnueva(i)=(b(i)-suma1-suma2)/A(i,i);
     end
     if norm(xvieja-xnueva,inf)<tol
-      disp("k = #iteraciones")
+      k
+      iteraciones
       return 
     end
     xvieja=xnueva;
