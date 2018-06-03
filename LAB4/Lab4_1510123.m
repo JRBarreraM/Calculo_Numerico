@@ -17,17 +17,14 @@ disp("El menor de sus autovalor es positivo, por tanto es definida positiva.");
 n=length(A);
 disp("Tiene todos sus elementos nulos excepto los de la diagonal principal y");
 disp("las dos diagonales secundarias hacia arriba y hacia abajo,");
-disp("por definicion es pentadiagonal.");
+disp("por definicion es pentadiagonal, esto se debe a por como las ");
+disp("Temperaturas externas constantes condicionan las variables");
 disp("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-disp("Parte 3");
+disp("Parte 3 y 4");
 x=LUcholesky(A,b);
 disp("L");
-disp("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-disp("Parte 4");
-disp(L);
 disp("Matriz de Banda con k1=2,k2=0");
 disp("L traspuesta");
-disp(L');
 disp("Matriz de Banda con k1=0,k2=2");
 disp("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 disp("Parte 5");
@@ -83,3 +80,6 @@ disp(x);
 disp("Resolvemos Cy=d");
 disp("y=");
 disp(y);
+disp("Parte 5")
+disp("Ya habiamos determinado que una de ellas era definida positiva,");
+disp("La factorizacion de Cholesky y la solucion del sistema nos lo confirman.")
