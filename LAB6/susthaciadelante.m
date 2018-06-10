@@ -9,6 +9,7 @@ function y = susthaciadelante(L,b)
     suma=0;
     for j=1:i-1
       suma=suma+L(i,j)*y(j);
+
     end
     y(i)=(b(i)-suma)/L(i,i);
   end

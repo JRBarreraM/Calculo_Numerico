@@ -1,4 +1,4 @@
-function [L,U] = FactorizacionLU(A)
+function [l,u] = FactorizacionLU(A)
 
   [n m]=size(A);
   iteraciones=0;
@@ -12,7 +12,5 @@ function [L,U] = FactorizacionLU(A)
       end
     end
   end
-
-  L=tril(A,-1)+eye(n);
- 
-  U=triu(A);
+  l = tril(A,-1)+eye(n);
+  u = triu(A);
