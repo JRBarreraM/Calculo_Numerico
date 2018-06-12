@@ -1,3 +1,5 @@
+disp('Estudiante: Jose Barrera. Carnet: 15-10123')
+
 % Ejercicio 1:
 disp("discos de Gershgorin y autovalores")
 A=[-1+i,0,1/4;1/4,1,1/4;1,1,3];
@@ -9,29 +11,32 @@ discosgershgorin(B)
 
 disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 
-% Ejercicio 2:
-% Buscamos los autovalores por metodo de la potencia:
-disp('Metodos Sobre A');
-disp('Metodo De La Potencia')
-[n m]=size(A);
-[x,r,k] = metodo_potencia(A,ones(n,1),1000,10^-6)
-disp('Metodo De La Potencia Inversa')
-[x,r,k] = metodo_potencia_inversa(A,ones(n,1),1000,10^-6)
-disp('Metodo De La Potencia Desplazado')
-[x,r,k] = metodo_potencia_desplazado(A,ones(n,1),real(A(1,1))-1,1000,10^-6)
-disp('Metodo De La Potencia Inversa Desplazado')
-[x,r,k] = metodo_potencia_inversa_desplazado(A,ones(n,1),real(A(1,1))-1,1000,10^-6)
+disp('Ejercicio 2:')
+disp( 'En este ejercicio se nos pide implementar las funciones')
 
-disp('Metodos Sobre B')
-disp('Metodo De La Potencia')
-[n m]=size(B);
-[x,r,k] = metodo_potencia(B,ones(n,1),1000,10^-6)
-disp('Metodo De La Potencia Inversa')
-[x,r,k] = metodo_potencia_inversa(B,ones(n,1),1000,10^-6)
-disp('Metodo De La Potencia Desplazado')
-[x,r,k] = metodo_potencia_desplazado(B,ones(n,1),real(A(2,2))-1,1000,10^-6)
-disp('Metodo De La Potencia Inversa Desplazado')
-[x,r,k] = metodo_potencia_inversa_desplazado(B,ones(n,1),real(A(1,1))-1,1000,10^-6)
+%Ejemplos de como llamar a las funciones:
+% Buscamos los autovalores por metodo de la potencia:
+%disp('Metodos Sobre A');
+%disp('Metodo De La Potencia')
+%[n m]=size(A);
+%[x,r,k] = metodo_potencia(A,ones(n,1),1000,10^-6)
+%disp('Metodo De La Potencia Inversa')
+%[x,r,k] = metodo_potencia_inversa(A,ones(n,1),1000,10^-6)
+%disp('Metodo De La Potencia Desplazado')
+%[x,r,k] = metodo_potencia_desplazado(A,ones(n,1),real(A(1,1))-1,1000,10^-6)
+%disp('Metodo De La Potencia Inversa Desplazado')
+%[x,r,k] = metodo_potencia_inversa_desplazado(A,ones(n,1),real(A(1,1))-1,1000,10^-6)
+
+%disp('Metodos Sobre B')
+%disp('Metodo De La Potencia')
+%[n m]=size(B);
+%[x,r,k] = metodo_potencia(B,ones(n,1),1000,10^-6)
+%disp('Metodo De La Potencia Inversa')
+%[x,r,k] = metodo_potencia_inversa(B,ones(n,1),1000,10^-6)
+%disp('Metodo De La Potencia Desplazado')
+%[x,r,k] = metodo_potencia_desplazado(B,ones(n,1),real(A(2,2))-1,1000,10^-6)
+%disp('Metodo De La Potencia Inversa Desplazado')
+%[x,r,k] = metodo_potencia_inversa_desplazado(B,ones(n,1),real(A(1,1))-1,1000,10^-6)
 
 disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 
@@ -111,3 +116,6 @@ disp('Obtenemos el autovector restante con el metodo de la potencia inversa desp
 disp('Para un miu=1.7')
 [x,r,k] = metodo_potencia_inversa_desplazado(A,ones(n,1),1.7,1000,10^-6);
 restante=r
+
+% Conclusiones:
+% El metodo obtiene aproximaciones bastante exactas a los autovalores reales
