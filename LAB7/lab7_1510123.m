@@ -3,17 +3,20 @@ load('data.mat');
 
 disp('Parte A')
 
+n=length(yd)
+
 disp('Para un polinomio de grado 5')
 p5=polyfit(xd,yd,5)'
-error_cuadratico_medio=ecm(p5,xd,yd)
+
+error_cuadratico_medio=sum((polyval(p5,xd)-yd).^2)/n
 
 disp('Para un polinomio de grado 15')
 p15=polyfit(xd,yd,15)'
-error_cuadratico_medio=ecm(p15,xd,yd)
+error_cuadratico_medio=sum((polyval(p15,xd)-yd).^2)/n
 
 disp('Para un polinomio de grado 20')
 p20=polyfit(xd,yd,20)'
-error_cuadratico_medio=ecm(p20,xd,yd)
+error_cuadratico_medio=sum((polyval(p20,xd)-yd).^2)/n
 
 disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 
@@ -55,11 +58,17 @@ ylabel('Temperatura (Grados Celcius)')
 disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 
 disp('Parte C')
+
 disp('Evaluamos El Polinomio De Grado 15')
+%Usamos format long para trabajar con 15 cifras decimales
+format long
+
 disp('Para 4.5')
 polyval(p15,4.5)
+
 disp('Para 5')
 polyval(p15,5)
+
 disp('Para 5.5')
 polyval(p15,5.5)
 
@@ -72,11 +81,17 @@ polyval(p15,5.5)
 disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 
 disp('Parte D')
-format long
+
 p15(end)=p15(end)-36.612;
-disp('Tiempo en el que se alcansa la temperatura 36,612')
+disp('Tiempo en el que se alcanza la temperatura 36,612')
 Tiempo=roots(p15);
-Tiempo=encontrar_tiempo(Tiempo)
+Tiempo=encontrar_tiempo(Tiempo,0,8)
+% Notese que este calculo presenta las cifras pedidas mientras que los tres
+% anteriores a pesar de estar en format long no las presentan, esto indica que
+% que en los casos anteriores estas cifras no eran cignificativas.
+
+% Afortunadamente la funcion encontrar_tiempo solo encontro un candidato, por lo
+% tanto este es el tiempo que buscabamos.
 
 % Para encontrar dicho valor empleamos la funcion encontrar_tiempo. A esta, le
 % pasamos el polinomio seleccionada al cual les restamos 36.612 (el valor que

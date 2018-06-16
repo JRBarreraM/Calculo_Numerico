@@ -1,8 +1,10 @@
-function x=encontrar_tiempo(Valores)
+% Funcion que recibe un vector de valores y busca aquellos entre las cotas
+% y que sean reales.
+function x=encontrar_tiempo(Valores,cotainf,cotasup)
   n=length(Valores);
+  x=[];
   for i=1:n
-    if 0<Valores(i) && Valores(i)<8 && imag(Valores(i))==0
-      x=Valores(i);
-      return
+    if cotainf<Valores(i) && Valores(i)<cotasup && imag(Valores(i))==0
+      x=[x,Valores(i)];
     end
   end
