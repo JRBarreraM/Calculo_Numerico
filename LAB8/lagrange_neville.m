@@ -1,10 +1,12 @@
-function Q(n,n) = Lagrange_neville(x,pointx,pointy)
+function x = lagrange_neville(x,pointx,pointy)
   n=length(pointx);
-  Q=NaN*ones(n);
+  Q=NaN(n);
   for k=1:n
     Q(k,1)=pointy(k);
+  end
   for i=2:n
     for j=2:i
-      Q(i,j)=(x-x(i-j))*Q(i,j-1)-(x-x(i))*Q(i-1,j-1)/(pointx(i)-pointx(i-j));
+      Q(i,j)=(x-pointx(i-j+1))*Q(i,j-1)-(x-pointx(i))*Q(i-1,j-1)/(pointx(i)-pointx(i-j+1));
     end
   end
+  x=Q(n,n);

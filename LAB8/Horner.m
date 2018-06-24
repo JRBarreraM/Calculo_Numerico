@@ -1,6 +1,6 @@
 function p = Horner(coeficientes,x)
   n=length(coeficientes);
-  p=coeficientes(n);
-  for i=n-1:-1:0
-    p=p.*x.+coeficientes(i);
+  p=coeficientes(1);
+  for i=2:n
+    p=(p.*x)+coeficientes(i);
   end

@@ -3,7 +3,11 @@
 # Funcion
 f = @(x) (x.*(sin(x)))./((x.^2).+1);
 
-disp('Parte a')
+%% Parte a)
+% Obtenga el polinomio de interpolaci ?on en la forma canonica resolviendo
+% el sistema lineal asociado(Ax = y donde A es la matriz de Vandermonde).
+% El polinomio obtenido debe ser evaluado en la forma de Horner cuando sea
+% requerido.
 
 # Calculamos las coordenadas x
 intervalo10 = linspace(-4*pi,4*pi,10);
@@ -27,43 +31,135 @@ x10=vandermond10\resultados_10'
 x30=vandermond30\resultados_30'
 x50=vandermond50\resultados_50'
 
-disp('Parte c)')
+%% Parte c)
+% Grafique f(x), el polinomio de interpolacion para cada metodo y los
+% puntos tomados en una ventana de tres graficos (una por cada cantidad de
+% puntos).
 
-# Graficamos la aproximaciones para 10 puntos
 subplot(3,2,[1,2]);
 hold on
-plot(intervalo1000,resultados_1000,'--g')
-yv=Horner(x10,intervalo10);
-plot(intervalo10,yv,'.r')
-yn=NaN*ones(10,1);
-for i=1:10
-  yn(i)=lagrange_neville(intervalo10(i),intervalo10,resultados_10);
-plot(intervalo10,yn,'-b')
-legend('Original','Neville','Vandermonde');
-title('10 puntos')
+title('Aproximacion por polinomio de 10 puntos')
 
-# Graficamos la aproximaciones para 30 puntos
+% aqui graficamos la funcion original
+plot(intervalo1000,resultados_1000,'b')
+xlim([-4*pi,4*pi])
+ylim([-4*pi,4*pi])
+
+
+% aqui graficamos los puntos tomados para la aproximacion
+plot(intervalo10,resultados_10,'sr')
+xlim([-4*pi,4*pi])
+ylim([-4*pi,4*pi])
+
+% aqui graficamos vandermonde
+plot(intervalo1000,polyval(x10,intervalo1000),'-k','Linewidth',2)
+xlim([-4*pi,4*pi])
+ylim([-4*pi,4*pi])
+
+% aqui graficamos lagrange
+nev = zeros(0,1000);
+k = 1;
+for i=1:1000
+  nev(k) = lagrange_neville(intervalo1000(i),intervalo10,resultados_10);
+  k = k + 1;
+end
+
+plot(intervalo1000,nev,'--m','Linewidth',2)
+xlim([-4*pi,4*pi])
+ylim([-4*pi,4*pi])
+
+legend("Funcion","Puntos Tomados","Vander","Lagrange")
+
 subplot(3,2,[3,4]);
 hold on
-plot(intervalo1000,resultados_1000,'--g');
-yv=Horner(x30,intervalo30);
-plot(intervalo30,yv,'.r');
-yn=NaN*ones(30,1);
-for i=1:30
-  yn(i)=lagrange_neville(intervalo30(i),intervalo30,resultados_30);
-plot(intervalo30,yn,'-b');
-legend('Original','Neville','Vandermonde');
-title('30 puntos')
+title('Aproximacion por polinomio de 30 puntos')
 
-# Graficamos la aproximaciones para 50 puntos
+% aqui graficamos la funcion original
+plot(intervalo1000,resultados_1000,'b')
+xlim([-4*pi,4*pi])
+ylim([-4*pi,4*pi])
+
+% aqui graficamos los puntos tomados para la aproximacion
+plot(intervalo30,resultados_30,'sr')
+xlim([-4*pi,4*pi])
+ylim([-4*pi,4*pi])
+
+% aqui graficamos vandermonde
+plot(intervalo1000,polyval(x30,intervalo1000),'-k','Linewidth',2)
+xlim([-4*pi,4*pi])
+ylim([-4*pi,4*pi])
+
+% aqui graficamos lagrange
+nev = zeros(0,1000);
+k = 1;
+for i=1:1000
+  nev(k) = lagrange_neville(intervalo1000(i),intervalo30,resultados_30);
+  k = k + 1;
+end
+
+plot(intervalo1000,nev,'--m','Linewidth',2)
+xlim([-4*pi,4*pi])
+ylim([-4*pi,4*pi])
+
 subplot(3,2,[5,6]);
 hold on
-plot(intervalo1000,resultados_1000,'--g');
-yn=NaN*ones(50,1);
-for i=1:50
-  yn(i)=lagrange_neville(intervalo50(i),intervalo50,resultados_50);
-plot(intervalo10,yn,'-b');
-yv=Horner(x50,intervalo50);
-plot(intervalo50,yv,'.r');
-legend('Original','Neville','Vandermonde');
-title('50 puntos')
+title('Aproximacion por polinomio de 50 puntos')
+
+% aqui graficamos la funcion original
+plot(intervalo1000,resultados_1000,'b')
+xlim([-4*pi,4*pi])
+ylim([-4*pi,4*pi])
+
+% aqui graficamos los puntos tomados para la aproximacion
+plot(intervalo50,resultados_50,'sr')
+xlim([-4*pi,4*pi])
+ylim([-4*pi,4*pi])
+
+% aqui graficamos vandermonde
+plot(intervalo1000,polyval(x50,intervalo1000),'-k','Linewidth',2)
+xlim([-4*pi,4*pi])
+ylim([-4*pi,4*pi])
+
+% aqui graficamos lagrange
+nev = zeros(0,1000);
+k = 1;
+for i=1:1000
+  nev(k) = lagrange_neville(intervalo1000(i),intervalo50,resultados_50);
+  k = k + 1;
+end
+
+plot(intervalo1000,nev,'--m','Linewidth',2)
+xlim([-4*pi,4*pi])
+ylim([-4*pi,4*pi])
+
+%% Parte d)
+% Aproxime los valores de f(-6.1333) y f(-1.4142) usando los distintos
+% polinomios interpolantes para 50 puntos. Calcule el error relativo.
+
+real = f(-6.1333);
+polin = polyval(x50,-6.1333);
+errorvan = errorrelativo(real,polin);
+disp('Valor de la funcion f(-6.1333) en aproximacion Vandermonde')
+disp(polin)
+disp('Error relativo Vandermonder')
+disp(errorvan)
+nev = lagrange_neville(-6.1333,intervalo50,resultados_50);
+errornev = errorrelativo(real,nev);
+disp('Valor de la funcion f(-6.1333) en aproximacion Lagrange')
+disp(nev)
+disp('Error relativo Lagrange')
+disp(errornev)
+
+real = f(-1.4142);
+polin = polyval(x50,-1.4142);
+errorvan = errorrelativo(real,polin);
+disp('Valor de la funcion f(-1.4142) en aproximacion Vandermonde')
+disp(polin)
+disp('Error relativo Vandermonder')
+disp(errorvan)
+nev = lagrange_neville(-1.4142,intervalo50,resultados_50);
+errornev = errorrelativo(real,nev);
+disp('Valor de la funcion f(-1.4142) en aproximacion Lagrange')
+disp(nev)
+disp('Error relativo Lagrange')
+disp(errornev)
