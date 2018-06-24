@@ -52,7 +52,7 @@ xlim([-4*pi,4*pi])
 ylim([-4*pi,4*pi])
 
 % aqui graficamos vandermonde
-plot(intervalo1000,polyval(x10,intervalo1000),'-k','Linewidth',2)
+plot(intervalo1000,polyval(x10,intervalo1000),'-k')
 xlim([-4*pi,4*pi])
 ylim([-4*pi,4*pi])
 
@@ -64,7 +64,7 @@ for i=1:1000
   k = k + 1;
 end
 
-plot(intervalo1000,nev,'--m','Linewidth',2)
+plot(intervalo1000,nev,'--m')
 xlim([-4*pi,4*pi])
 ylim([-4*pi,4*pi])
 
@@ -85,7 +85,7 @@ xlim([-4*pi,4*pi])
 ylim([-4*pi,4*pi])
 
 % aqui graficamos vandermonde
-plot(intervalo1000,polyval(x30,intervalo1000),'-k','Linewidth',2)
+plot(intervalo1000,polyval(x30,intervalo1000),'-k')
 xlim([-4*pi,4*pi])
 ylim([-4*pi,4*pi])
 
@@ -97,7 +97,7 @@ for i=1:1000
   k = k + 1;
 end
 
-plot(intervalo1000,nev,'--m','Linewidth',2)
+plot(intervalo1000,nev,'--m')
 xlim([-4*pi,4*pi])
 ylim([-4*pi,4*pi])
 
@@ -116,7 +116,7 @@ xlim([-4*pi,4*pi])
 ylim([-4*pi,4*pi])
 
 % aqui graficamos vandermonde
-plot(intervalo1000,polyval(x50,intervalo1000),'-k','Linewidth',2)
+plot(intervalo1000,polyval(x50,intervalo1000),'-k')
 xlim([-4*pi,4*pi])
 ylim([-4*pi,4*pi])
 
@@ -128,7 +128,7 @@ for i=1:1000
   k = k + 1;
 end
 
-plot(intervalo1000,nev,'--m','Linewidth',2)
+plot(intervalo1000,nev,'--m')
 xlim([-4*pi,4*pi])
 ylim([-4*pi,4*pi])
 
