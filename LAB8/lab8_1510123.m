@@ -13,13 +13,14 @@ f = @(x) (x.*(sin(x)))./((x.^2).+1);
 intervalo10 = linspace(-4*pi,4*pi,10);
 intervalo30 = linspace(-4*pi,4*pi,30);
 intervalo50 = linspace(-4*pi,4*pi,50);
-intervalo1000 = linspace(-4*pi,4*pi,1000);
+# Seleccionado para hacer la grafica mas curveada
+intervalo250 = linspace(-4*pi,4*pi,250);
 
 # Calculamos el vector original y
 resultados_10 = f(intervalo10);
 resultados_30 = f(intervalo30);
 resultados_50 = f(intervalo50);
-resultados_1000 = f(intervalo1000);
+resultados_250 = f(intervalo250);
 
 # Calculamos la matriz de Vandermonde
 vandermond10=vander(intervalo10);
@@ -41,32 +42,32 @@ hold on
 title('Aproximacion por polinomio de 10 puntos')
 
 % aqui graficamos la funcion original
-plot(intervalo1000,resultados_1000,'b')
+plot(intervalo250,resultados_250,'b')
 xlim([-4*pi,4*pi])
-ylim([-4*pi,4*pi])
+ylim([-0.4,0.6])
 
 
 % aqui graficamos los puntos tomados para la aproximacion
 plot(intervalo10,resultados_10,'sr')
 xlim([-4*pi,4*pi])
-ylim([-4*pi,4*pi])
+ylim([-0.4,0.6])
 
 % aqui graficamos vandermonde
-plot(intervalo1000,polyval(x10,intervalo1000),'-k')
+plot(intervalo250,polyval(x10,intervalo250),'-g')
 xlim([-4*pi,4*pi])
-ylim([-4*pi,4*pi])
+ylim([-0.4,0.6])
 
 % aqui graficamos lagrange
-nev = zeros(0,1000);
+nev = zeros(0,250);
 k = 1;
-for i=1:1000
-  nev(k) = lagrange_neville(intervalo1000(i),intervalo10,resultados_10);
+for i=1:250
+  nev(k) = lagrange_neville(intervalo250(i),intervalo10,resultados_10);
   k = k + 1;
 end
 
-plot(intervalo1000,nev,'--m')
+plot(intervalo250,nev,'--m')
 xlim([-4*pi,4*pi])
-ylim([-4*pi,4*pi])
+ylim([-0.4,0.6])
 
 legend("Funcion","Puntos Tomados","Vander","Lagrange")
 
@@ -75,62 +76,62 @@ hold on
 title('Aproximacion por polinomio de 30 puntos')
 
 % aqui graficamos la funcion original
-plot(intervalo1000,resultados_1000,'b')
+plot(intervalo250,resultados_250,'b')
 xlim([-4*pi,4*pi])
-ylim([-4*pi,4*pi])
+ylim([-0.4,0.6])
 
 % aqui graficamos los puntos tomados para la aproximacion
 plot(intervalo30,resultados_30,'sr')
 xlim([-4*pi,4*pi])
-ylim([-4*pi,4*pi])
+ylim([-0.4,0.6])
 
 % aqui graficamos vandermonde
-plot(intervalo1000,polyval(x30,intervalo1000),'-k')
+plot(intervalo250,polyval(x30,intervalo250),'-g')
 xlim([-4*pi,4*pi])
-ylim([-4*pi,4*pi])
+ylim([-0.4,0.6])
 
 % aqui graficamos lagrange
-nev = zeros(0,1000);
+nev = zeros(0,250);
 k = 1;
-for i=1:1000
-  nev(k) = lagrange_neville(intervalo1000(i),intervalo30,resultados_30);
+for i=1:250
+  nev(k) = lagrange_neville(intervalo250(i),intervalo30,resultados_30);
   k = k + 1;
 end
 
-plot(intervalo1000,nev,'--m')
+plot(intervalo250,nev,'--m')
 xlim([-4*pi,4*pi])
-ylim([-4*pi,4*pi])
+ylim([-0.4,0.6])
 
 subplot(3,2,[5,6]);
 hold on
 title('Aproximacion por polinomio de 50 puntos')
 
 % aqui graficamos la funcion original
-plot(intervalo1000,resultados_1000,'b')
+plot(intervalo250,resultados_250,'b')
 xlim([-4*pi,4*pi])
-ylim([-4*pi,4*pi])
+ylim([-0.4,0.6])
 
 % aqui graficamos los puntos tomados para la aproximacion
 plot(intervalo50,resultados_50,'sr')
 xlim([-4*pi,4*pi])
-ylim([-4*pi,4*pi])
+ylim([-0.4,0.6])
 
 % aqui graficamos vandermonde
-plot(intervalo1000,polyval(x50,intervalo1000),'-k')
+plot(intervalo250,polyval(x50,intervalo250),'-g')
 xlim([-4*pi,4*pi])
-ylim([-4*pi,4*pi])
+ylim([-0.4,0.6])
 
 % aqui graficamos lagrange
-nev = zeros(0,1000);
+nev = zeros(0,250);
 k = 1;
-for i=1:1000
-  nev(k) = lagrange_neville(intervalo1000(i),intervalo50,resultados_50);
+for i=1:250
+  nev(k) = lagrange_neville(intervalo250(i),intervalo50,resultados_50);
   k = k + 1;
 end
 
-plot(intervalo1000,nev,'--m')
+plot(intervalo250,nev,'--m')
 xlim([-4*pi,4*pi])
-ylim([-4*pi,4*pi])
+ylim([-0.4,0.6])
 
 %% Parte d)
 % Aproxime los valores de f(-6.1333) y f(-1.4142) usando los distintos
