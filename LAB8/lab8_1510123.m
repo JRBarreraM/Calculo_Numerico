@@ -164,3 +164,17 @@ disp('Valor de la funcion f(-1.4142) en aproximacion Lagrange')
 disp(nev)
 disp('Error relativo Lagrange')
 disp(errornev)
+
+%% Parte e)
+% En base a los resultados obtenidos podemos ver que para 10 puntos, los
+% polinomios obtenidos son practicamente iguales. Sin embargo al incrementar
+% la cantidad de puntos los metodos divergen. Con Vandermonde, la aproximacion
+% en los extremos es relativamente acertada, sin embargo mas al centro el error
+% es muy alto. En el otro extremo, la aproximacion obtenida por Lagrange, en el
+% centro se ajusta a la funcion, pero en los extremos se separa y tiene, oscila-
+% ciones pronunciadas. Tomando en cuenta solamente el error, pareciera que la
+% aproximacion de Lagrange es mejor, pero dependera de que en parte de la fun-
+% cion se encuntre el punto que se desea interpolar para decidir, si utilizar
+% uno u otro metodo. El mal condicionamiento de la matriz de vandermonde es
+% lo que la hace tan poco practica y el Lagrange debe calcularse punto por punto,
+% con el metodo de neville.
