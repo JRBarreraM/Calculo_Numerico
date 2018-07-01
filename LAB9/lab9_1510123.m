@@ -246,6 +246,13 @@ ylim([-0.4,0.6])
 
 legend("Funcion","Equidistantes","Chebyshev","Hermite Eq","Hermite Cheb")
 
+% Luego de estudiar las graficas obtenidas, concluimos que los puntos de chebyshev
+% y tomar mas puntos, efectivamente mejoran las aproximaciones para ambos polinomios.
+% Esto refleja lo visto en teoria, que nos indica que la construccion de los puntos
+% de chebyshev son los mejores para la interpolacion y que el polinomio de hermite
+% que intenta seguir la curvatura de la funcion original, tiene oscilaciones
+% mucho menos pronunciadas que las de newton,.
+
 disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 
 % Ejericicio 2)
@@ -275,6 +282,13 @@ ylim([0,1000])
 
 distancia_10s = horner_for_hermite(hermite_movil,10,tiempo)
 
+calcular_velocidad = derivada_geometrica(intervalo,horner_hermite_movil);
+
+[maxima_velocidad,instante,velocidad_supera_los_80_por_primera_vez,instante_supera_los_80_por_primera_vez] = encontrar_maximo(intervalo,calcular_velocidad)
+
 % Luego de obtener el polinomio lo graficamos,
-% Observamos que supera los 80 pies por segundo y tiene una velocidad maxima de:
-% 
+% Observamos que supera los 80 pies por segundo a los 5.1212 seg y tiene una velocidad
+% maxima de 119.18 pies/seg a los 12.343 seg. Esta es la velocidad maxima aproximable
+% dado los puntos que tenemos para la interpolacion, ademas este resultado es
+% acertado pues es fruto de una comparacion contra todos los otros puntos obtenidos
+% en el intervalo.
