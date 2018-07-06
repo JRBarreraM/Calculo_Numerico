@@ -83,17 +83,50 @@ medios_equi=ptosmedios(intervalo17);
 % calculamos el error relativo
 spline_medios=spline(intervalo17,fresultados_17,medios_equi);
 fmedios_equi=f(medios_equi);
-err_spline_inf = norm((fmedios_equi-spline_medios),inf)/norm(fmedios_equi,inf);
-err_hermite_1 = norm((fmedios_equi-spline_medios),1)/norm(fmedios_equi,1);
+err_spline_inf = norm((fmedios_equi-spline_medios),inf)/norm(fmedios_equi,inf)
+err_spline_1 = norm((fmedios_equi-spline_medios),1)/norm(fmedios_equi,1)
+numero_min_digitos=1
 
 fmedios_cheb=f(medios_cheb);
 hermite_medios_cheby=NaN(16,1);
 for j=1:16
   hermite_medios_cheby(j) = horner_for_hermite(hermite_17ptos,medios_cheb(j),chebyshev17);
 end
-err_hermite_inf = norm((fmedios_cheb-hermite_medios_cheby),inf)/norm(fmedios_cheb,inf);
-err_hermite_1 = norm((fmedios_cheb-hermite_medios_cheby),1)/norm(fmedios_cheb,1);
+err_hermite_inf = norm((fmedios_cheb-hermite_medios_cheby),inf)/norm(fmedios_cheb,inf)
+err_hermite_1 = norm((fmedios_cheb-hermite_medios_cheby),1)/norm(fmedios_cheb,1)
+numero_min_digitos=7
+
+% Justificamos que el numero minimo de digitos con que se aproxima a la solucion
+% viene dado por error_relativo < 5*10^t, siendo t el numero de cifras significativas.
+
+% Concluimos que la interpolacion de hermite con puntos de chebyshev es mas ajustada
+% que la obtenida mediante splines cubicos.
 
 % Ejericicio 2)
 figure
 butterfly();
+figure
+hold on
+t = 1:25;
+px=[370.43,330.55,300.87,225.75,157.12,187.73,232.24,197,154.34,225.75,300.87,330.55,368.57,399.18,434.42,505.83,584.66,552.20,509.54,547.57,583.74,521.60,439.06,409.38,370.43];
+py=[615.75,553.27,489.38,495.06,490.80,432.58,368.68,320.41,246.57,239.47,247.99,184.10,124.46,175.58,247.99,242.31,246.57,307.63,368.68,428.32,489.38,495.06,485.12,553.27,615.75];
+
+th = linspace(1, 25);
+xh = interp1(t,px,th, 'spline');
+yh = interp1(t,py,th, 'spline');
+plot(xh, yh, 'r', 'linewidth', 5)
+hold on;
+plot(px,py,'ro','linewidth',3)
+whitebg('black')
+
+t = 1:25;
+px=[370.43,330.55,300.87,225.75,157.12,187.73,232.24,197,154.34,225.75,300.87,330.55,368.57,399.18,434.42,505.83,584.66,552.20,509.54,547.57,583.74,521.60,439.06,409.38,370.43];
+py=[615.75,553.27,489.38,495.06,490.80,432.58,368.68,320.41,246.57,239.47,247.99,184.10,124.46,175.58,247.99,242.31,246.57,307.63,368.68,428.32,489.38,495.06,485.12,553.27,615.75];
+
+th = linspace(1, 25);
+xh = interp1(t,px,th, 'spline');
+yh = interp1(t,py,th, 'spline');
+plot(xh, yh, 'r', 'linewidth', 5)
+hold on;
+plot(px,py,'ro','linewidth',3)
+whitebg('black')
