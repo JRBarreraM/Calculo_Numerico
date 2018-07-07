@@ -38,12 +38,13 @@ disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 %%% Finalmente Graficamos :
 
 %%%% Grafica Para Polinomio De Newton
-figure
+
+%figure
 hold on
 title('Aproximacion por 17 puntos Hermite Vs Spline')
 
 % aqui graficamos la funcion original
-plot(intervalo250,fresultados_250,'*')
+%plot(intervalo250,fresultados_250,'*')
 xlim([-pi,pi])
 ylim([-1.5,1.5])
 
@@ -103,21 +104,10 @@ numero_min_digitos=7
 % que la obtenida mediante splines cubicos.
 
 % Ejericicio 2)
-figure
-butterfly();
+%butterfly();
+title('Dibujo de mgk.jpg con splines y fill')
 figure
 hold on
-t = 1:25;
-px=[370.43,330.55,300.87,225.75,157.12,187.73,232.24,197,154.34,225.75,300.87,330.55,368.57,399.18,434.42,505.83,584.66,552.20,509.54,547.57,583.74,521.60,439.06,409.38,370.43];
-py=[615.75,553.27,489.38,495.06,490.80,432.58,368.68,320.41,246.57,239.47,247.99,184.10,124.46,175.58,247.99,242.31,246.57,307.63,368.68,428.32,489.38,495.06,485.12,553.27,615.75];
-
-th = linspace(1, 25);
-xh = interp1(t,px,th, 'spline');
-yh = interp1(t,py,th, 'spline');
-plot(xh, yh, 'r', 'linewidth', 5)
-hold on;
-plot(px,py,'ro','linewidth',3)
-whitebg('black')
 
 t = 1:25;
 px=[370.43,330.55,300.87,225.75,157.12,187.73,232.24,197,154.34,225.75,300.87,330.55,368.57,399.18,434.42,505.83,584.66,552.20,509.54,547.57,583.74,521.60,439.06,409.38,370.43];
@@ -129,4 +119,30 @@ yh = interp1(t,py,th, 'spline');
 plot(xh, yh, 'r', 'linewidth', 5)
 hold on;
 plot(px,py,'ro','linewidth',3)
-whitebg('black')
+whitebg('k')
+fill(px,py,'r')
+
+t = 1:7;
+px=[298,255,299,432,509,430,298];
+py=[246,365,489,459,368,279,246];
+th = linspace(1, 7);
+xh = interp1(t,px,th, 'spline');
+yh = interp1(t,py,th, 'spline');
+plot(xh, yh, 'k', 'linewidth', 5)
+
+t = 1:7;
+px=[440,484,434,306,231,313,440];
+py=[489,372,246,281,367,459,489];
+th = linspace(1, 7);
+xh = interp1(t,px,th, 'spline');
+yh = interp1(t,py,th, 'spline');
+plot(xh, yh, 'k', 'linewidth', 5)
+
+t = 1:7;
+px=[345.62,376.73,389.40,379.03,344.47,335.25,345.62];
+py=[394.99,394.99,368.76,335.53,337.28,367.01,394.99];
+th = linspace(1, 7);
+xh = interp1(t,px,th, 'spline');
+yh = interp1(t,py,th, 'spline');
+plot(xh, yh, 'k', 'linewidth', 5)
+fill(px,py,'k')
