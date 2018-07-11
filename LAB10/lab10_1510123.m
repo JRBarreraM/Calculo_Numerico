@@ -101,10 +101,14 @@ numero_min_digitos=7
 % viene dado por error_relativo < 5*10^t, siendo t el numero de cifras significativas.
 
 % Concluimos que la interpolacion de hermite con puntos de chebyshev es mas ajustada
-% que la obtenida mediante splines cubicos.
+% que la obtenida mediante splines cubicos. Es importante destacar la "ventaja",
+% de hermite al trabajar con nodos optimos.
 
 % Ejericicio 2)
-%butterfly();
+
+%butterfly(); dibujo de prueba
+
+%% Acontinuacion mostramos en un lienzo el "dibujo"
 title('Dibujo de mgk.jpg con splines y fill')
 figure
 hold on
